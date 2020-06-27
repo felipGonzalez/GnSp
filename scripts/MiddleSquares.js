@@ -89,7 +89,7 @@ window.addEventListener('load', function () {
 
        let data = middleSquares.init(document.querySelector("#seed").value,document.querySelector("#count").value);
        
-        localStorage.setItem("ri", data[])
+        localStorage.setItem("ri", JSON.stringify(data[5]));
 
        var table = document.querySelector("#table-c");
        createTable(table,data);
