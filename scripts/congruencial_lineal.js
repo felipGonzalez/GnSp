@@ -28,6 +28,8 @@ function getN_i(r_i, min, max) {
     }
     return n_i;
 }
+
+// entradas que necesito
 var x0 = 1, k = 4, c = 6, g = 7, tam = 18;
 var a = 1 + 2 * k;
 var m = Math.pow(2, g);
