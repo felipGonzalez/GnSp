@@ -91,8 +91,15 @@ window.addEventListener('load', function () {
        
         localStorage.setItem("ri", JSON.stringify(data[5]));
 
-       var table = document.querySelector("#table-c");
-       createTable(table,data);
+        let ri = []
+        for (let i = 0; i < data.length; i++) {
+            ri.push(data[i][5])
+        }
+
+        sessionStorage.clear()
+        sessionStorage.setItem("ri", JSON.stringify(ri))
+        var table = document.querySelector("#table-c");
+        createTable(table,data);
        
         
     });
@@ -101,7 +108,6 @@ window.addEventListener('load', function () {
     function createTable(table, data) {
         var body = document.createElement("tbody");
         for (let i = 0; i < data.length; i++) {
-            console.log(data[i]);
             var tr = document.createElement("tr");
             for (let j = 0; j < data[i].length; j++) {
                 var td = document.createElement("td");
