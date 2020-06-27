@@ -89,6 +89,8 @@ window.addEventListener('load', function () {
 
        let data = middleSquares.init(document.querySelector("#seed").value,document.querySelector("#count").value);
        
+        localStorage.setItem("ri", JSON.stringify(data[5]));
+
        var table = document.querySelector("#table-c");
        createTable(table,data);
        
@@ -112,9 +114,7 @@ window.addEventListener('load', function () {
         
         var new_tbody = document.createElement('tbody');
         table.replaceChild(body, document.querySelector("#table-c>tbody"))
-        //table.appendChild(body)
-        console.log(body);
-        
+         
     }
 
 
