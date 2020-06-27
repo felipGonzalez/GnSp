@@ -3,12 +3,18 @@ window.addEventListener('load', function () {
     /** Cuadrados medios */
     class MiddleSquares {
         
-        min = 8;
+        min = 5;
         max = 10;
         k = 2;
         divisor = 0
 
-        init(seed, quantity){
+        init(seed, quantity,a,b){
+            if(a != undefined && a > 0){
+                this.min = a
+            }
+            if(b != undefined && b > 0){
+                this.min = b
+            }
             this.divisor = this.getDivisor(seed.toString().length);
             return this.createMatrix(parseInt(seed),parseInt(quantity));
         }
@@ -22,8 +28,6 @@ window.addEventListener('load', function () {
                 let extraction = parseInt(this.verifyNumber(xi2))
                 let ri = extraction/this.divisor
                 let ni = this.calculateNi(ri)
-                //let data= {"i":i,"xi":xi,"xi^2":xi2,"extension": extension, "extraction":extraction, "ri":ri, "ni":ni}
-                //console.log(data);
                 let data = []
                 data.push(i,xi,xi2,extension,extraction,ri,ni)
                 result.push(data);
@@ -72,6 +76,8 @@ window.addEventListener('load', function () {
         for (let i = 0; i < count; i++) {
             divisor *= 10;            
         }
+        console.log("divisor",divisor);
+        
         return divisor;
        }
 
@@ -87,21 +93,22 @@ window.addEventListener('load', function () {
     document.querySelector("#btn-c").addEventListener('click', function () {
         middleSquares = new MiddleSquares();
 
-       let data = middleSquares.init(document.querySelector("#seed").value,document.querySelector("#count").value);
+       let data = middleSquares.init(
+           document.querySelector("#seed").value,
+           document.querySelector("#count").value,
+           document.querySelector("#a").value,
+           document.querySelector("#b").value
+           );
        
         localStorage.setItem("ri", JSON.stringify(data[5]));
-
         let ri = []
         for (let i = 0; i < data.length; i++) {
             ri.push(data[i][5])
         }
-
         sessionStorage.clear()
         sessionStorage.setItem("ri", JSON.stringify(ri))
         var table = document.querySelector("#table-c");
         createTable(table,data);
-       
-        
     });
     
 
