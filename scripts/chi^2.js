@@ -28,17 +28,10 @@ window.addEventListener('load', function () {
         // Obtener las frecuancias (lista de final)
         getInterval(min, max, numberInterval) {
             var interval = [], aux = min;
-            console.log("min --> ", min);
-            
             for (let index = 0; index < numberInterval; index++) {
-                console.log("aux 1 --> ", aux);
                 let number = aux + (max - min) / numberInterval;
-                
-                //.toFixed(8)
                 interval[index] = parseFloat(number.toFixed(8));
                 aux = interval[index];
-                console.log("aux 2 --> ", aux);
-                
             }
             return interval.map(Number);
         }
@@ -168,15 +161,12 @@ window.addEventListener('load', function () {
             textResult = "Si ha pasado la prueba de chi^2";
         }
 
-
         document.querySelector("#result_chi").innerHTML = textResult;
-        
         var table = document.querySelector("#table-chi_1");
         createTable(table, chi_2.createMatrix_1(r_i, x_i), "#table-chi_1>tbody");
 
         var table_2 = document.querySelector("#table-chi_2");
         createTable(table_2, chi_2.createMatrix_2(minData, final, frecObtenida, frecEsperada, chi), "#table-chi_2>tbody");
-
     });
 
     function createTable(table, data, replace) {
