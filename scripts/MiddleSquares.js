@@ -105,8 +105,8 @@ window.addEventListener('load', function () {
         for (let i = 0; i < data.length; i++) {
             ri.push(data[i][5])
         }
-        sessionStorage.clear()
-        sessionStorage.setItem("ri", JSON.stringify(ri))
+        sessionStorage.clear();
+        sessionStorage.setItem("ri", JSON.stringify(ri));
         var table = document.querySelector("#table-c");
         createTable(table,data);
     });
