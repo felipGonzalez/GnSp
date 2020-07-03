@@ -39,7 +39,7 @@
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="label-cm" data-toggle="pill" href="#div-cm" role="tab" aria-controls="div-cm"
-          aria-selected="false">Congruencias Multiplicativos</a>
+          aria-selected="false">Congruencia Multiplicativa</a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="label-du" data-toggle="pill" href="#div-du" role="tab" aria-controls="div-du"
@@ -139,9 +139,78 @@
           </table>
         </div>
       </div>
-      <div class="tab-pane fade show" id="div-cm" role="tabpanel" aria-labelledby="label-cm">Congruencia Multiplicativos
+      <div class="tab-pane fade show" id="div-cm" role="tabpanel" aria-labelledby="label-cl">
+        <h2>Congruencia Multiplicativa</h2>
+        <div class="row">
+          <form action="#" class="row">
+            <div class="col-6">
+              <label for="cm_x_0">Ingresar X_0:</label>
+              <input type="number" class="form-control" id="cm_x_0" required value=5>
+            </div>
+            <div class="col-6">
+              <label for="cm_t">Ingresar t:</label>
+              <input type="number" class="form-control" id="cm_t" value=3 required>
+            </div>
+            <div class="col-6">
+              <label for="cm_g">Ingresar g:</label>
+              <input type="number" class="form-control" id="cm_g" value=7 required>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <label for="cm_min">Ingresar minimo:</label>
+                <input type="number" class="form-control" id="cm_min" value=8 required>
+              </div>
+              <div class="col-6">
+                <label for="cm_max">Ingresar maximo:</label>
+                <input type="number" class="form-control" id="cm_max" value=10 required>
+              </div>
+            </div>
+            <button type="submit" id="congr_mult_play" class="btn btn-primary m-3">Generar</button>
+          </form>
+        </div>
+        <div class="row" style="padding-top: 5%;">
+          <table class="table table-striped table-dark" id="table-cm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">X_i</th>
+                <th scope="col">R_i</th>
+                <th scope="col">N_i</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
-      <div class="tab-pane fade show" id="div-du" role="tabpanel" aria-labelledby="label-du">distribución Uniforme</div>
+      <div class="tab-pane fade show" id="div-du" role="tabpanel" aria-labelledby="label-du">
+        <h2>Distribución Uniforme</h2>
+        <div class="row" style="padding-bottom: 5%;">
+          <div class="row">
+            <div class="col-6">
+              <form action="#" class="row">
+                <label for="count">Ingresar numero minimo:</label>
+                <input type="number" class="form-control" id="uni_min" required>
+                <label for="count">Ingresar numero máximo:</label>
+                <input type="number" class="form-control" id="uni_max" required>
+                <button type="submit" id="uni_play" class="btn btn-primary m-3">Generar</button>
+              </form>
+            </div>
+            <div class="col-6">
+              <table class="table table-striped table-dark" id="table-uni">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ri</th>
+                    <th scope="col">Ni</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
       <div class="tab-pane fade show" id="div-dn" role="tabpanel" aria-labelledby="label-dn">distribución Normal</div>
       <div class="tab-pane fade show" id="div-pc" role="tabpanel" aria-labelledby="label-dn">
         <div>
@@ -229,6 +298,8 @@
   <script type="text/javascript" src="scripts/MiddleSquares.js"></script>
   <script type="text/javascript" src="scripts/chi^2.js"></script>
   <script type="text/javascript" src="scripts/congruencial_lineal.js"></script>
+  <script type="text/javascript" src="scripts/congruencial_multiplicativo.js"></script>
+  <script type="text/javascript" src="scripts/Uniforme.js"></script>
   <footer class="bg-dark text-light final fixed-bottom">
     <div class="footer-copyright text-center py-3">© 2020 Mendez - Gonzalez - Lopez
     </div>

@@ -57,6 +57,11 @@ window.addEventListener('load', function () {
 
         let n_i = cl.getN_i(r_i, min, max);
 
+        //Guardar en sesion
+        sessionStorage.clear()
+        sessionStorage.setItem("ri", JSON.stringify(r_i))
+
+        // pintar en la tabla
         var table = document.querySelector("#table-cl");
         createTable(table, cl.createMatrix(x_i, r_i, n_i), "#table-cl>tbody");
 
