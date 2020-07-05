@@ -30,6 +30,20 @@ window.addEventListener('load', function () {
             return data.reduce((previus, current) => current += previus) / data.length;
         }
 
+        //Obtener la varianza
+        getVarianza(numbers, media) {
+            console.log("N: ", numbers);
+            console.log("media: ", media);
+            
+            
+           let varianza = 0;
+            numbers.forEach(element => {
+                varianza += Math.pow(element - media, 2);
+
+            });
+            return (varianza) / (numbers.length - 1);
+        }
+
         //
         getPrueba(libertad, probabilidad) {
             var raiz = Math.sqrt(2 / (9 * libertad));
@@ -59,8 +73,8 @@ window.addEventListener('load', function () {
             return (r >= li && r < ls);
         }
 
-        createMatrix(aceptacion, a, n, media, aa, aux, x1, x2, li, ls) {
-            return [[aceptacion, a, n, media, aa, aux, x1, x2, li, ls]];
+        createMatrix(aceptacion, a, n, media, varianza, aa, aux, x1, x2, li, ls) {
+            return [[aceptacion, a, n, media, varianza, aa, aux, x1, x2, li, ls]];
         }
     }
 
@@ -82,6 +96,9 @@ window.addEventListener('load', function () {
         //Media
         let media = va.getMedia(r_i).toFixed(5);
 
+        //Varianza
+        let varianza = va.getVarianza(r_i, media).toFixed(5);
+
         //a/2
         let aa = a / 2;
 
@@ -99,10 +116,10 @@ window.addEventListener('load', function () {
         //limite superior
         let ls = va.getL(x2, n).toFixed(8);
 
-        let prueba = va.prueba(media, li, ls);
+        let prueba = va.prueba(varianza, ls, li);
 
         var table = document.querySelector("#table-pv");
-        createTable(table, va.createMatrix(aceptacion, a, n, media, aa, aux, x1, x2, li, ls), "#table-pv>tbody");
+        createTable(table, va.createMatrix(aceptacion, a, n, media, varianza, aa, aux, x1, x2, li, ls), "#table-pv>tbody");
 
         let textResult = "NO ha pasado la prueba de Varianza";
 

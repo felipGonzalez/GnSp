@@ -56,9 +56,11 @@ window.addEventListener('load', function () {
         }
 
         createMatrix(aceptacion, a, n, media, aux, z, li, ls) {
-            return [[aceptacion,a,n,media,aux,z,li,ls]];
+            return [[aceptacion, a, n, media, aux, z, li, ls]];
         }
     }
+
+
 
     document.querySelector("#pruebas_play").addEventListener('click', function () {
         var me = new Media();
@@ -89,10 +91,10 @@ window.addEventListener('load', function () {
         let ls = me.getLS(z, n).toFixed(8);
 
         let prueba = me.prueba(media, li, ls);
-        
+
         var table = document.querySelector("#table-pm");
         createTable(table, me.createMatrix(aceptacion, a, n, media, aux, z, li, ls), "#table-pm>tbody");
-        
+
         let textResult = "NO ha pasado la prueba de medias";
 
         if (prueba) {
