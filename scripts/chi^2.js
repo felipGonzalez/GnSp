@@ -134,25 +134,41 @@ window.addEventListener('load', function () {
     }
 
 
-    document.querySelector("#chi_play").addEventListener('click', function () {
+    document.querySelector("#pruebas_play").addEventListener('click', function () {
         chi_2 = new Chi_2();
-        let data = document.querySelector("#chi_r_i").value;
-        let minNumber = document.querySelector("#chi_min").value;
-        let maxNumber = document.querySelector("#chi_max").value;
-        let r_i = chi_2.stringToR_i(data);
 
+        let data = document.querySelector("#pruebas_r_i").value;
+        let r_i = [];
+        if (data) {
+            r_i = chi_2.stringToR_i(data);
+        } else {
+            r_i = JSON.parse(sessionStorage.getItem("ri"));
+        }
+        //cargar el minimo
+        let minNumber = document.querySelector("#pruebas_min").value;
+        //cargar el Maximo
+        let maxNumber = document.querySelector("#pruebas_max").value;
+        //obtener x_i
         let x_i = chi_2.getX_i(r_i, parseInt(minNumber), parseInt(maxNumber));
+        //obtener el minimo de x_i
         let minData = chi_2.getMin(x_i);
+        //obtener el maximo de x_i
         let maxData = chi_2.getMax(x_i);
-
+        // obtener los intervalos finales
         let final = chi_2.getInterval(minData, maxData, 8);
-
+        //Obtener la frecuencia
         let frecObtenida = chi_2.getFrecuency(x_i, minData, final);
+        //frecuencia esperada
         let frecEsperada = x_i.length / frecObtenida.length;
+        // Obtener chi de cada intervalo
         var chi = chi_2.getChi(frecObtenida, frecEsperada);
+        // obtener la sumatoria de chi
         let total_chi = chi_2.sum(chi);
+        // Grados de libertas
         var gl = chi_2.getGl(final.length, 2);
+        // Obtener la prueva
         var prueba = chi_2.getPrueba(gl, 0.05);
+        //Obtener el resultado
         var result = chi_2.getResult(prueba, total_chi);
 
         let textResult = "No ha pasado la prueba de chi^2";
