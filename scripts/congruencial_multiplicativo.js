@@ -1,29 +1,28 @@
 window.addEventListener('load', function () {
 
-    class CongruencialLineal {
+    class CongruencialMultiplicativo {
 
-        getX_i(x0, a, c, m, tam) {
+        getX_i(x0, a, m, tam) {
             var x_i = [];
             for (let index = 0; index < tam; index++) {
-                x0 = ((a * x0) + c) % m;
+                x0 = (a * x0) % m;
                 x_i.push(x0);
             }
             return x_i;
         }
 
         getR_i(x_i, m) {
-            var r_i = [];
-            for (let index = 0; index < x_i.length; index++) {
-                r_i[index] = (x_i[index] / (m - 1));
-            }
+            let r_i = [];
+            x_i.forEach(element => {
+                r_i.push(element / (m - 1));
+            });
             return r_i;
         }
-
-        getN_i(r_i, min, max) {
-            var n_i = [];
-            for (let index = 0; index < r_i.length; index++) {
-                n_i[index] = min + (max - min) * r_i[index];
-            }
+        getN_i(r_i, a, b) {
+            let n_i = [];
+            r_i.forEach(element => {
+                n_i.push(a + (b - a) * element);
+            });
             return n_i;
         }
 
@@ -38,33 +37,31 @@ window.addEventListener('load', function () {
         }
     }
 
-
-
-    document.querySelector("#congr_line_play").addEventListener('click', function () {
-        cl = new CongruencialLineal();
-        let x_0 = parseInt(document.querySelector("#cl_x_0").value);
-        let k = parseInt(document.querySelector("#cl_k").value);
-        let c = parseInt(document.querySelector("#cl_c").value);
-        let g = parseInt(document.querySelector("#cl_g").value);
+    document.querySelector("#congr_mult_play").addEventListener('click', function () {
+        cm = new CongruencialMultiplicativo();
+        //Entrada de datos
+        let x_0 = parseInt(document.querySelector("#cm_x_0").value);
+        let t = parseInt(document.querySelector("#cm_t").value);
+        let g = parseInt(document.querySelector("#cm_g").value);
+        let min = parseInt(document.querySelector("#cm_min").value);
+        let max = parseInt(document.querySelector("#cm_max").value);
         let tam = 18;
-        let min = parseInt(document.querySelector("#cl_min").value);
-        let max = parseInt(document.querySelector("#cl_max").value);
-
-        let a = 1 + 2 * k;
+        //calculos
+        let a = (8 * t) + 3;
         let m = Math.pow(2, g);
-        let x_i = cl.getX_i(x_0, a, c, m, tam);
-        let r_i = cl.getR_i(x_i, m);
 
-        let n_i = cl.getN_i(r_i, min, max);
+        let x_i = cm.getX_i(x_0, a, m, tam);
+        let r_i = cm.getR_i(x_i, m);
+
+        let n_i = cm.getN_i(r_i, min, max);
 
         //Guardar en sesion
         sessionStorage.clear();
         sessionStorage.setItem("ri", JSON.stringify(r_i));
 
         // pintar en la tabla
-        var table = document.querySelector("#table-cl");
-        createTable(table, cl.createMatrix(x_i, r_i, n_i), "#table-cl>tbody");
-
+        var table = document.querySelector("#table-cm");
+        createTable(table, cm.createMatrix(x_i, r_i, n_i), "#table-cm>tbody");
     });
 
     function createTable(table, data, replace) {
@@ -80,6 +77,7 @@ window.addEventListener('load', function () {
             body.appendChild(tr);
         }
         //var new_tbody = document.createElement('tbody');
-        table.replaceChild(body, document.querySelector(replace))
+        table.replaceChild(body, document.querySelector(replace));
     }
+
 });
