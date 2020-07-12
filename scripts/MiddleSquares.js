@@ -8,7 +8,7 @@ window.addEventListener('load', function () {
         k = 2;
         divisor = 0
 
-        init(seed, quantity,a,b){
+        init(seed, quantity){
             this.divisor = this.getDivisor(seed.toString().length);
             return this.createMatrix(parseInt(seed),parseInt(quantity));
         }
