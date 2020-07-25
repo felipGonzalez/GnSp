@@ -44,7 +44,6 @@ window.addEventListener('load', function () {
             return (varianza) / (numbers.length - 1);
         }
 
-        //
         getPrueba(libertad, probabilidad) {
             var raiz = Math.sqrt(2 / (9 * libertad));
             var z = this.calculateNormInv(1 - probabilidad);
@@ -95,34 +94,24 @@ window.addEventListener('load', function () {
         let n = r_i.length;
         //Media
         let media = va.getMedia(r_i).toFixed(5);
-
         //Varianza
         let varianza = va.getVarianza(r_i, media).toFixed(5);
-
         //a/2
         let aa = a / 2;
-
         // 1 - (a/2);
         let aux = 1 - (a / 2);
-
         // x^2 a/2
         let x1 = va.getPrueba((n - 1), aa).toFixed(8);
-
         // x^2 1-(a/2)
         let x2 = va.getPrueba((n - 1), aux).toFixed(8);
-
         //limite inferior
         let li = va.getL(x1, n).toFixed(8);
         //limite superior
         let ls = va.getL(x2, n).toFixed(8);
-
         let prueba = va.prueba(varianza, ls, li);
-
         var table = document.querySelector("#table-pv");
         createTable(table, va.createMatrix(aceptacion, a, n, media, varianza, aa, aux, x1, x2, li, ls), "#table-pv>tbody");
-
         let textResult = "NO ha pasado la prueba de Varianza";
-
         if (prueba) {
             textResult = "SI ha pasado la prueba de Varianza";
         }

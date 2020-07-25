@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
-
+    
     class Normal {
-
+        
         getN_i(data) {
             let n_i = [];
             data.forEach(element => {
@@ -9,11 +9,24 @@ window.addEventListener('load', function () {
             });
             return n_i;
         }
-
+        
+        calculateNormInv(v) { // Funcion de distribucion de probabilidad normal inversa
+            var acumulador = 0.00000028666;
+            var i;
+            for (i = -5; acumulador < v; i = i + 0.00001) {
+                acumulador = acumulador + (0.00001 * this.calculaz(i - 0.000005));
+            }
+            return i;
+        }
+        
+        calculaz(v) { // funcion de densidad de probabilidad normal
+            return Math.exp(-Math.pow(v, 2) / 2) / Math.sqrt(2 * Math.PI);
+        }
+        
         getMin(list) {
             return Math.min(...list);
         }
-
+        
         // Obtener el valor maximo
         getMax(list) {
             return Math.max(...list);
@@ -57,18 +70,6 @@ window.addEventListener('load', function () {
             return number > init && number <= final;
         }
 
-        calculateNormInv(v) { // Funcion de distribucion de probabilidad normal inversa
-            var acumulador = 0.00000028666;
-            var i;
-            for (i = -5; acumulador < v; i = i + 0.00001) {
-                acumulador = acumulador + (0.00001 * this.calculaz(i - 0.000005));
-            }
-            return i;
-        }
-
-        calculaz(v) { // funcion de densidad de probabilidad normal
-            return Math.exp(-Math.pow(v, 2) / 2) / Math.sqrt(2 * Math.PI);
-        }
 
         createMatrix(r_i, n_i) {
             let result = [];

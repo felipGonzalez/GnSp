@@ -170,13 +170,10 @@ window.addEventListener('load', function () {
         var prueba = chi_2.getPrueba(gl, 0.05);
         //Obtener el resultado
         var result = chi_2.getResult(prueba, total_chi);
-
         let textResult = "No ha pasado la prueba de chi^2";
-
         if (result) {
             textResult = "Si ha pasado la prueba de chi^2";
         }
-
         document.querySelector("#result_chi").innerHTML = textResult;
         var table = document.querySelector("#table-chi_1");
         createTable(table, chi_2.createMatrix_1(r_i, x_i), "#table-chi_1>tbody");
